@@ -1,0 +1,61 @@
+<html>
+
+<body>
+    <div id='block'></div>
+</body>
+
+<style>
+    pre {
+        margin:0px;
+        padding:0px;
+        width:100%;
+        overflow-x: auto;
+    }
+
+    .expression {
+        background-color:#B3E635;
+        margin:10px;
+        padding:10px;
+    }
+
+    .result {
+        background-color:#6AA39A;
+        margin:10px;
+        padding:10px;
+    }
+</style>
+
+<script type='text/javascript'>
+    function escapeHtml(text) {
+      var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      
+      return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+
+    function addItem(id, result, expression) {
+        var block = document.getElementById('block');
+
+        var x = document.createElement('div');
+        x.setAttribute('id', id);
+        x.innerHTML = '<div>' + 
+            '<div class="expression"><pre>' + escapeHtml(expression) + '</pre></div>'+
+            '<div class="result"><pre>' + escapeHtml(result) + '</pre></div>' + 
+        '</div>';
+
+        if(block.childNodes.length == 0) {
+            block.appendChild(x);
+        } else {
+            block.insertBefore(x, block.childNodes[0]);
+        }
+    }
+
+
+</script>
+
+</html>
